@@ -1,20 +1,35 @@
 <div class="page-header">
   <h1>
-    <a href="<%= @link.url %>"> <%= @link.title %></a><br>
+    <% valid = @link.url.index('http') %>
+
+    <% if valid == 0 %>
+        <a href= "<%= @link.url %>"> <%= @link.title %></a><br>
+
+    <% else %>
+        <a href="<%="http://" + @link.url %>"><%= @link.title %> </a><br>
+    <% end %>
     <small>
       Submitted by <%= @link.user.email %>
     </small>
   </h1>
 </div>
 
-<div class="btn-group">
-  <%= link_to "Visit url", @link.url, class: "btn btn-primary" %>
-</div>
 
 <% if @link.user == current_user %>
    <div class="btn-group">
      <%= link_to "Edit", edit_link_path(@link), class: "btn btn-default" %>
      <%= link_to "Delete", @link, method: :delete, class: "btn btn-default" %>
    </div>
-
 <% end %>
+
+<div style="float:right;">
+        <%= link_to like_link_path(@link), method: :put, class: "btn btn-default btn-sm" do %>
+        <span class="glyphicon glyphicon-chevron-up"></span> Upvote
+        <%= @link.get_upvotes.size %>
+        <% end %>
+
+        <%= link_to dislike_link_path(@link), method: :put, class: "btn btn-default btn-sm" do %>
+            <span class="glyphicon glyphicon-chevron-down"></span> Downvote
+            <%= @link.get_downvotes.size %>
+        <% end %>
+    </div>
