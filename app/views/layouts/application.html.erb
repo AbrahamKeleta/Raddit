@@ -1,3 +1,4 @@
+<!--Main page of the html body, our "index"-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <!-- Flashs any message sent out by controller-->
+    <% flash.each do |name, msg| %>
+        <%= content_tag(:div, msg, class:"alert alert-#{name}") %>
+    <% end %>
 
 <%= yield %>
 
