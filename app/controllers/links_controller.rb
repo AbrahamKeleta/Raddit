@@ -5,7 +5,7 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+    @links = Link.all.reverse_order
   end
 
   # GET /links/1
@@ -31,7 +31,7 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to @link }
+        format.html { redirect_to root_url }
         format.json { render :show, status: :created, location: @link }
       else
         format.html { render :new }
