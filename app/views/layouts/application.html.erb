@@ -8,7 +8,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
     <header class="navbar navbar-default" role="navigation">
       <div class="navbar-inner">
         <div class="container">
@@ -33,6 +32,22 @@
         </div>
       </div>
     </header>
+
+    <div class="notice" style="display:none">
+        <p id="message"> <%= flash.now[:notice] %></p>
+    </div>
+
+    <script>
+      $(function(){
+          var text = $(".notice #message").text().trim();
+          if (!!text) {
+              console.log("clicked!");
+              $(".notice").fadeIn("slow");
+              $(".notice").fadeOut(3000);
+          }
+      });
+    </script>
+
 
     <div id="main_content" class="container">
         <div id="content" class="col-md-9 center-block">

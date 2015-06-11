@@ -26,6 +26,19 @@
     color: #2F363E;
   }
 }
+
+.notice {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: rgba(215, 194, 21, .6);
+  text-align: center;
+  padding: 11px;
+  #message {
+    color: #ffffff;
+  }
+}
+
 #main_content {
   #content {
     float: none;
